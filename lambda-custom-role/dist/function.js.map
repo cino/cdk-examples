@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../lib/function.ts"],
-  "sourcesContent": ["import { APIGatewayEventRequestContext, APIGatewayProxyEvent } from 'aws-lambda';\nexport async function handler(\n    event: APIGatewayProxyEvent,\n    context: APIGatewayEventRequestContext,\n    callback: any,\n): Promise<void> {\n    console.log('log entry.');\n}\n"],
-  "mappings": "4ZAAA,kDACA,iBACI,EACA,EACA,EACa,CACb,QAAQ,IAAI,YAAY,CAC5B",
-  "names": []
-}
