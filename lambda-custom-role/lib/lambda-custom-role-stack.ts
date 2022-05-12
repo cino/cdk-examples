@@ -1,5 +1,6 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Effect, Policy, PolicyStatement, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
 
@@ -16,6 +17,7 @@ export class LambdaCustomRoleStack extends Stack {
     // create smallest lambda function possible and assign the custom role.
     const lambdaFunction = new NodejsFunction(this, 'Function', {
       entry: './dist/function.js',
+      runtime: Runtime.NODEJS_16_X,
       role: customRole,
     });
 
