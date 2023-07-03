@@ -16,8 +16,8 @@ export class LambdaCustomRoleStack extends Stack {
 
     // create smallest lambda function possible and assign the custom role.
     const lambdaFunction = new NodejsFunction(this, 'Function', {
-      entry: './dist/function.js',
-      runtime: Runtime.NODEJS_16_X,
+      entry: './lib/function.ts',
+      runtime: Runtime.NODEJS_18_X,
       role: customRole,
     });
 

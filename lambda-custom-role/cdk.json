@@ -1,5 +1,5 @@
 {
-  "app": "npm run build && npx ts-node --prefer-ts-exts bin/lambda-custom-role.ts",
+  "app": "npx ts-node --prefer-ts-exts bin/lambda-custom-role.ts",
   "watch": {
     "include": [
       "**"
