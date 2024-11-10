@@ -1,4 +1,4 @@
-# Lambda Custom Role
+# Parameter Store vs Secrets Manager
 
 Regarding: https://cino.io/2023/aws-parameter-store-vs-aws-secrets/
 
