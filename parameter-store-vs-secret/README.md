@@ -1,14 +1,5 @@
-# Welcome to your CDK TypeScript project
+# Lambda Custom Role
 
-This is a blank project for CDK development with TypeScript.
+Regarding: https://cino.io/2023/aws-parameter-store-vs-aws-secrets/
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+Example showing the differences between Parameter Store and Secrets Manager and how to perform rotation on both
