@@ -46,10 +46,12 @@ import {
 import { Construct } from "constructs";
 
 export class PrivateApiGatewayDnsStack extends cdk.Stack {
+  private readonly hostedZoneName = "cino.dev";
+
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const apiFqn = "api.cino.dev";
+    const apiFqn = `api.${this.hostedZoneName}`;
 
     // Step 1: Retrieve vpc / hosted zones
     const [vpc, publicHostedZone, privateHostedZone] = this.getNetwork();
@@ -64,6 +66,9 @@ export class PrivateApiGatewayDnsStack extends cdk.Stack {
     const alb = this.createApplicationLoadBalancer(vpc, apiGatewayVpcEndpoint);
 
     // Step 4: Create API Gateway
+    // The API Gateway needs to be configured with the apiFqn and the certificate
+    // as this will be used to determine by the VPC endpoint to which gateway
+    // the request is being made to.
     this.createApiGateway(apiFqn, acmCertificate, apiGatewayVpcEndpoint);
 
     // Step 5: Create ALB Listener for API Gateway VPC Endpoint
@@ -86,12 +91,12 @@ export class PrivateApiGatewayDnsStack extends cdk.Stack {
     });
 
     const publicHostedZone = HostedZone.fromLookup(this, "PublicHostedZone", {
-      domainName: "cino.dev",
+      domainName: this.hostedZoneName,
       privateZone: false,
     });
 
     const privateHostedZone = HostedZone.fromLookup(this, "PrivateHostedZone", {
-      domainName: "cino.dev",
+      domainName: this.hostedZoneName,
       privateZone: true,
     });
 
@@ -233,7 +238,7 @@ export class PrivateApiGatewayDnsStack extends cdk.Stack {
 
     apiGatewayTargetGroup.configureHealthCheck({
       path: `/test/hello`,
-      healthyHttpCodes: "200,400,403",
+      healthyHttpCodes: "200,403",
       port: "443",
     });
 
