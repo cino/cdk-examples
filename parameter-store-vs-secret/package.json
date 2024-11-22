@@ -14,7 +14,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/node": "20.11.19",
-    "aws-cdk": "2.128.0",
+    "aws-cdk": "2.170.0",
     "esbuild": "^0.20.0",
     "esbuild-node-externals": "^1.13.0",
     "jest": "^29.7.0",
@@ -26,7 +26,7 @@
     "@aws-sdk/client-secrets-manager": "^3.515.0",
     "@aws-sdk/client-ssm": "^3.515.0",
     "@types/aws-lambda": "^8.10.13",
-    "aws-cdk-lib": "^2.128.0",
+    "aws-cdk-lib": "^2.170.0",
     "constructs": "^10.3.0",
     "source-map-support": "^0.5.21"
   }
