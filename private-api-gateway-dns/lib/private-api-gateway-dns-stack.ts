@@ -25,7 +25,6 @@ import {
 } from "aws-cdk-lib/aws-elasticloadbalancingv2";
 import { IpTarget } from "aws-cdk-lib/aws-elasticloadbalancingv2-targets";
 import {
-  AccountPrincipal,
   AnyPrincipal,
   Effect,
   PolicyDocument,
@@ -156,7 +155,7 @@ export class PrivateApiGatewayDnsStack extends cdk.Stack {
     });
 
     // Add a new resource to the API
-    const helloResource = api.root.addResource("hello",);
+    const helloResource = api.root.addResource("hello");
 
     // Define a mock integration
     const testIntegration = new MockIntegration({
@@ -182,7 +181,10 @@ export class PrivateApiGatewayDnsStack extends cdk.Stack {
     return api;
   }
 
-  private createApplicationLoadBalancer(vpc: IVpc, vpcEndpoint: InterfaceVpcEndpoint): ApplicationLoadBalancer {
+  private createApplicationLoadBalancer(
+    vpc: IVpc,
+    vpcEndpoint: InterfaceVpcEndpoint
+  ): ApplicationLoadBalancer {
     const alb = new ApplicationLoadBalancer(this, "ALB", {
       vpc: vpc,
       internetFacing: false,
@@ -193,10 +195,7 @@ export class PrivateApiGatewayDnsStack extends cdk.Stack {
     });
 
     // Allow traffic to flow towards the VPC Endpoint
-    alb.connections.allowTo(
-      vpcEndpoint,
-      Port.tcp(443),
-    );
+    alb.connections.allowTo(vpcEndpoint, Port.tcp(443));
 
     return alb;
   }
